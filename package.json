@@ -1,0 +1,28 @@
+{
+  "name": "easy-cache-manager",
+  "version": "1.0.0",
+  "description": "package to easily manage cache services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonathanCalderon/easy-cache-manager.git"
+  },
+  "keywords": [
+    "cache",
+    "npm",
+    "node"
+  ],
+  "author": "Jonathan Calderón",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonathanCalderon/easy-cache-manager/issues"
+  },
+  "homepage": "https://github.com/JonathanCalderon/easy-cache-manager#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "mc": "^1.0.6"
+  }
+}
