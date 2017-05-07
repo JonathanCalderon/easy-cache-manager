@@ -4,17 +4,15 @@
 
 function easyCacheManager(typeParam, timeoutParam, endpointCacheParam) {
 
-    let self = this;
-    const TYPE_LOCAL_MEMORY = 'Local memory';
-    const TYPE_MEM_CACHED = 'Memcached';
+    let self = {};
+    self.TYPE_LOCAL_MEMORY = 'Local memory';
+    self.TYPE_MEM_CACHED = 'Memcached';
 
-    let type = typeParam || TYPE_LOCAL_MEMORY;
-    let timeout = timeoutParam || -1;
-    let endpointCache = endpointCacheParam || 'localhost';
+    self.type = typeParam || TYPE_LOCAL_MEMORY;
+    self.timeout = timeoutParam || -1;
+    self.endpointCache = endpointCacheParam || 'localhost';
 
-
-
-    let cacheLib;
+    self.cacheLib;
     if (type === TYPE_LOCAL_MEMORY) {
         let localCache = require('./storageModules/localMemory').lc;
         cacheLib = localCache(timeout);
