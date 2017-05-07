@@ -4,12 +4,14 @@
 
 function easyCacheManager(typeParam, timeoutParam, endpointCacheParam) {
 
+    let self = this;
     const TYPE_LOCAL_MEMORY = 'Local memory';
     const TYPE_MEM_CACHED = 'Memcached';
 
     let type = typeParam || TYPE_LOCAL_MEMORY;
     let timeout = timeoutParam || -1;
     let endpointCache = endpointCacheParam || 'localhost';
+
 
 
     let cacheLib;
@@ -21,15 +23,16 @@ function easyCacheManager(typeParam, timeoutParam, endpointCacheParam) {
         cacheLib = memcached(endpointCache, timeout);
     }
 
-    function getObject(key) {
+    self.getObject = (key) => {
         return cacheLib.getObject(key);
     }
 
 
-    function setObject(key, objectCache, options) {
+    self.setObject = (key, objectCache, options) => {
         return cacheLib.setObject(key, objectCache, options);
     }
 
+    return self;
 }
 
 module.exports = {
