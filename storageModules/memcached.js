@@ -6,37 +6,43 @@ function memcached(endpointParam, timeoutParam) {
 
     let mc = require('mc');
     let Promise = require('bluebird');
+    var self = {};
+    self.endpoint = endpointParam;
+    self.timeout = timeoutParam;
 
-    let endpoint = endpointParam;
-    let timeout = timeoutParam;
-
-    let MemcacheClient = new mc.Client(endpoint);
-    MemcacheClient = Promise.promisifyAll(MemcacheClient, {
+    self.MemcacheClient = new mc.Client(self.endpoint);
+    self.MemcacheClient = Promise.promisifyAll(self.MemcacheClient, {
         suffix: "AS"
     });
 
-    MemcacheClient.connectAS().then(function () {
+    self.MemcacheClient.connectAS().then(function () {
         console.log("Connected to memcache");
     });
 
 
-    function getObject(key) {
-        return MemcacheClient.getAS(key).then(resp => {
+    self.getObject = (key) => {
+        return self.MemcacheClient.getAS(key).then(resp => {
             return JSON.parse(resp[key]);
         }).catch(err => {
             return null;
         });
     }
 
-    function setObject(key, objectCache, options) {
-        let timeoutAct = options.timeout || (timeout == -1) ? 0 : timeout;
-        return MemcacheClient.setAS(key, JSON.stringify(objectCache), {
+    self.setObject = (key, objectCache, options) => {
+        let timeoutAct = self.timeout;
+        if (options && options.timeout)
+            timeoutAct = options.timeout
+        if (timeoutAct == -1)
+            timeoutAct = 0;
+        return self.MemcacheClient.setAS(key, JSON.stringify(objectCache), {
             flags: 0,
             exptime: timeoutAct
         }).then(function (resp) {
             return resp;
         });
     }
+
+    return self;
 }
 
 module.exports = {
