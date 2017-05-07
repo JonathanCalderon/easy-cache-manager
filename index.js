@@ -13,21 +13,21 @@ function easyCacheManager(typeParam, timeoutParam, endpointCacheParam) {
     self.endpointCache = endpointCacheParam || 'localhost';
 
     self.cacheLib;
-    if (type === TYPE_LOCAL_MEMORY) {
+    if (self.type === TYPE_LOCAL_MEMORY) {
         let localCache = require('./storageModules/localMemory').lc;
-        cacheLib = localCache(timeout);
-    } else if (type === TYPE_MEM_CACHED) {
+        self.cacheLib = localCache(timeout);
+    } else if (self.type === TYPE_MEM_CACHED) {
         let memcached = require('./storageModules/memcached').memc;
-        cacheLib = memcached(endpointCache, timeout);
+        self.cacheLib = memcached(endpointCache, timeout);
     }
 
     self.getObject = (key) => {
-        return cacheLib.getObject(key);
+        return self.cacheLib.getObject(key);
     }
 
 
     self.setObject = (key, objectCache, options) => {
-        return cacheLib.setObject(key, objectCache, options);
+        return self.cacheLib.setObject(key, objectCache, options);
     }
 
     return self;
