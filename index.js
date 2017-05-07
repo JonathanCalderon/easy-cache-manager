@@ -15,10 +15,10 @@ function easyCacheManager(typeParam, timeoutParam, endpointCacheParam) {
     self.cacheLib;
     if (self.type === self.TYPE_LOCAL_MEMORY) {
         let localCache = require('./storageModules/localMemory').lc;
-        self.cacheLib = localCache(timeout);
+        self.cacheLib = localCache(self.timeout);
     } else if (self.type === self.TYPE_MEM_CACHED) {
         let memcached = require('./storageModules/memcached').memc;
-        self.cacheLib = memcached(endpointCache, timeout);
+        self.cacheLib = memcached(self.endpointCache, self.timeout);
     }
 
     self.getObject = (key) => {
