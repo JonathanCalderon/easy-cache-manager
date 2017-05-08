@@ -1,6 +1,6 @@
 {
   "name": "easy-cache-manager",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "package to easily manage cache services",
   "main": "index.js",
   "scripts": {
