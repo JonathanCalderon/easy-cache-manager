@@ -2,21 +2,22 @@
 
 'use strict';
 
+const TYPE_LOCAL_MEMORY = 'Local memory';
+const TYPE_MEM_CACHED = 'Memcached';
+
 function easyCacheManager(typeParam, timeoutParam, endpointCacheParam) {
 
     let self = {};
-    self.TYPE_LOCAL_MEMORY = 'Local memory';
-    self.TYPE_MEM_CACHED = 'Memcached';
 
-    self.type = typeParam || self.TYPE_LOCAL_MEMORY;
+    self.type = typeParam || TYPE_LOCAL_MEMORY;
     self.timeout = timeoutParam || -1;
     self.endpointCache = endpointCacheParam || 'localhost';
 
     self.cacheLib;
-    if (self.type === self.TYPE_LOCAL_MEMORY) {
+    if (self.type === TYPE_LOCAL_MEMORY) {
         let localCache = require('./storageModules/localMemory').lc;
         self.cacheLib = localCache(self.timeout);
-    } else if (self.type === self.TYPE_MEM_CACHED) {
+    } else if (self.type === TYPE_MEM_CACHED) {
         let memcached = require('./storageModules/memcached').memc;
         self.cacheLib = memcached(self.endpointCache, self.timeout);
     }
@@ -33,6 +34,4 @@ function easyCacheManager(typeParam, timeoutParam, endpointCacheParam) {
     return self;
 }
 
-module.exports = {
-    ecm: easyCacheManager
-};
+module.exports = easyCacheManager;

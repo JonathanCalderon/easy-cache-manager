@@ -38,7 +38,7 @@ function memcached(endpointParam, timeoutParam) {
             flags: 0,
             exptime: timeoutAct
         }).then(function (resp) {
-            return resp;
+            return 'ok';
         });
     }
 
