@@ -7,7 +7,7 @@ npm install easy-cache-manager [--save|-g]
 ```
 ## Setting up
 Currently there is two modes of cache that you can use: local memory and memcached. You can choose which one are you going to use.
-
+ 
 #### 1. Local Memory
 ```
 var ECM = require('easy-cache-manager');
@@ -25,6 +25,7 @@ var EasyCacheManager = new ECM ('Memcached' [,<timeout>,<host>]);
 ## Usage
 
 There are 2 functions: get object and set object.
+
 #### 1. Get Object
 This method return the object in cache with the given key
 ```
