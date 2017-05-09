@@ -20,7 +20,7 @@ var EasyCacheManager = new ECM ('Local memory' [, timeout]);
 var ECM = require('easy-cache-manager');
 var EasyCacheManager = new ECM ('Memcached' [,<timeout>,<host>]);
 ```
-**Note**: If you do not provide a *timeout* parameter, the object will be in memory as long as the process is running. Also, if you do not provide a *host* parameter, the default value is *localhost*. It is require to have installed memcached for the host given.
+**Note**: If you do not provide a *timeout* parameter, the object will be in memory as long as the memcached process is running. Also, if you do not provide a *host* parameter, the default value is *localhost*. It is require to have installed memcached for the host given.
 
 ## Usage
 
