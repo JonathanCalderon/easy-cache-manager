@@ -1,6 +1,6 @@
 # easy-cache-manager
 This package allows you to easily manage your application cache, using one of two methods: local memory and MemCached.
-**Note: ** Timeout functionality is not finished yet.
+**Note:** Timeout functionality is not finished yet.
 ## Instalation
 ```
 npm install easy-cache-manager [--save|-g]
