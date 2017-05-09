@@ -1,5 +1,5 @@
 # easy-cache-manager
-This package allows you to easily manage your application cache, using MemCached. Soon local memory and redis storage are going to be supported.
+This package allows you to easily manage your application cache, using one of two methods: local memory and MemCached.
 
 ## Instalation
 ```
@@ -8,7 +8,14 @@ npm install easy-cache-manager [--save|-g]
 ## Setting up
 Currently there is two modes of cache that you can use: local memory and memcached. You can choose which one are you going to use.
 
-#### 1. Memcached
+#### 1. Local Memory
+```
+var ECM = require('easy-cache-manager');
+var EasyCacheManager = new ECM ('Local memory' [, timeout]);
+```
+**Note**: If you do not provide a timeout parameter, the object will be in memory as long as the process is running.
+
+#### 2. Memcached
 ```
 var ECM = require('easy-cache-manager');
 var EasyCacheManager = new ECM ('Memcached' [,<timeout>,<host>]);
@@ -18,7 +25,6 @@ var EasyCacheManager = new ECM ('Memcached' [,<timeout>,<host>]);
 ## Usage
 
 There are 2 functions: get object and set object.
-
 #### 1. Get Object
 This method return the object in cache with the given key
 ```
@@ -28,7 +34,6 @@ EasyCacheManager.getObject(key).then(function(objCache){
     // connection or internal libraries error
 });
 ```
-
 #### 2. Set object
 This method sets an object in the cache service. *options* object is optional.
 ```
