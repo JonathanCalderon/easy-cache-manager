@@ -3,21 +3,21 @@ This package allows you to easily manage your application cache, using one of tw
 **Note:** Timeout functionality is not finished yet. Redis service will be soon provided
 
 ## Instalation
-```
+```javascript
 npm install easy-cache-manager [--save|-g]
 ```
 ## Setting up
 Currently there is two modes of cache that you can use: local memory and memcached. You can choose which one are you going to use.
  
 #### 1. Local Memory
-```
+```javascript
 var ECM = require('easy-cache-manager');
 var EasyCacheManager = new ECM ('Local memory' [, timeout]);
 ```
 **Note**: If you do not provide a timeout parameter, the object will be in memory as long as the process is running.
 
 #### 2. Memcached
-```
+```javascript
 var ECM = require('easy-cache-manager');
 var EasyCacheManager = new ECM ('Memcached' [,<timeout>,<host>]);
 ```
@@ -29,7 +29,7 @@ There are 2 functions: get object and set object.
 
 #### 1. Get Object
 This method return the object in cache with the given key
-```
+```javascript
 EasyCacheManager.getObject(key).then(function(objCache){
     // objCache can be null
 }).catch(function(err){
@@ -38,7 +38,7 @@ EasyCacheManager.getObject(key).then(function(objCache){
 ```
 #### 2. Set object
 This method sets an object in the cache service. *options* object is optional.
-```
+```javascript
 EasyCacheManager.setObject(key, object[,options]).then(function(resp){
     // resp is an 'ok' message
 }).catch(function(err){
@@ -46,7 +46,7 @@ EasyCacheManager.setObject(key, object[,options]).then(function(resp){
 });
 ```
 **Options object**
-```
+```javascript
 {
     timeout: 1494277474 // Unix standar
 }
