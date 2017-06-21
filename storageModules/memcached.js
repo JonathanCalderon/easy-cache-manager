@@ -2,10 +2,11 @@
 
 'use strict';
 
-function memcached(endpointParam, timeoutParam) {
+function memcached(endpointParam, timeoutParam, promiseParam) {
 
     let mc = require('mc');
-    let Promise = require('bluebird');
+    let Promise = promiseParam;
+
     var self = {};
     self.endpoint = endpointParam;
     self.timeout = timeoutParam;

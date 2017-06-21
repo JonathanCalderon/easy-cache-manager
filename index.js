@@ -5,21 +5,23 @@
 const TYPE_LOCAL_MEMORY = 'Local memory';
 const TYPE_MEM_CACHED = 'Memcached';
 
-function easyCacheManager(typeParam, timeoutParam, endpointCacheParam) {
+function easyCacheManager(typeParam, timeoutParam, endpointCacheParam, promiseParam) {
 
     let self = {};
 
     self.type = typeParam || TYPE_LOCAL_MEMORY;
     self.timeout = timeoutParam || -1;
     self.endpointCache = endpointCacheParam || 'localhost';
+    self.promise = promiseParam || require('bluebird');
+
 
     self.cacheLib;
     if (self.type === TYPE_LOCAL_MEMORY) {
         let localCache = require('./storageModules/localMemory').lm;
-        self.cacheLib = localCache(self.timeout);
+        self.cacheLib = localCache(self.timeout, self.promise);
     } else if (self.type === TYPE_MEM_CACHED) {
         let memcached = require('./storageModules/memcached').memc;
-        self.cacheLib = memcached(self.endpointCache, self.timeout);
+        self.cacheLib = memcached(self.endpointCache, self.timeout, self.promise);
     }
 
     self.getObject = (key) => {

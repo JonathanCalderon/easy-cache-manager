@@ -2,9 +2,9 @@
 
 'use strict';
 
-function localMemory(timeoutParam) {
+function localMemory(timeoutParam, promiseParam) {
 
-    let Promise = require('bluebird');
+    let Promise = promiseParam;
     let self = {};
     self.objects = {};
     self.timeout = timeoutParam;
