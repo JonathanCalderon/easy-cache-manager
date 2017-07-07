@@ -1,5 +1,3 @@
-/* jslint es6 */
-
 'use strict';
 
 const TYPE_LOCAL_MEMORY = 'Local memory';
@@ -14,8 +12,6 @@ function easyCacheManager(typeParam, timeoutParam, endpointCacheParam, promisePa
     self.endpointCache = endpointCacheParam || 'localhost';
     self.promise = promiseParam || require('bluebird');
 
-
-    self.cacheLib;
     if (self.type === TYPE_LOCAL_MEMORY) {
         let localCache = require('./storageModules/localMemory').lm;
         self.cacheLib = localCache(self.timeout, self.promise);
@@ -26,12 +22,17 @@ function easyCacheManager(typeParam, timeoutParam, endpointCacheParam, promisePa
 
     self.getObject = (key) => {
         return self.cacheLib.getObject(key);
-    }
+    };
 
 
     self.setObject = (key, objectCache, options) => {
         return self.cacheLib.setObject(key, objectCache, options);
-    }
+    };
+
+    self.close = () => {
+        if (self.type === TYPE_MEM_CACHED)
+            return self.cacheLib.close();
+    };
 
     return self;
 }

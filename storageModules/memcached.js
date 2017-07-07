@@ -1,5 +1,3 @@
-/* jslint es6 */
-
 'use strict';
 
 function memcached(endpointParam, timeoutParam, promiseParam) {
@@ -27,12 +25,16 @@ function memcached(endpointParam, timeoutParam, promiseParam) {
         }).catch(err => {
             return null;
         });
-    }
+    };
+
+    self.close = () => {
+        return self.MemcacheClient.disconnect();
+    };
 
     self.setObject = (key, objectCache, options) => {
         let timeoutAct = self.timeout;
         if (options && options.timeout)
-            timeoutAct = options.timeout
+            timeoutAct = options.timeout;
         if (timeoutAct == -1)
             timeoutAct = 0;
         return self.MemcacheClient.setAS(key, JSON.stringify(objectCache), {
@@ -41,11 +43,11 @@ function memcached(endpointParam, timeoutParam, promiseParam) {
         }).then(function (resp) {
             return 'ok';
         });
-    }
+    };
 
     return self;
 }
 
 module.exports = {
     memc: memcached
-}
+};
