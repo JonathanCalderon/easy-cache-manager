@@ -28,7 +28,7 @@ function memcached(endpointParam, timeoutParam, promiseParam) {
     };
 
     self.close = () => {
-        return self.MemcacheClient.disconnect();
+        return self.mc.disconnect();
     };
 
     self.setObject = (key, objectCache, options) => {
