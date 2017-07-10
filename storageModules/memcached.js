@@ -15,7 +15,7 @@ function memcached(endpointParam, timeoutParam, promiseParam) {
     });
 
     self.MemcacheClient.connectAS().then(function () {
-        console.log("Connected to memcache.");
+        console.log("Connected to memcache...");
     });
 
 
