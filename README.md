@@ -54,7 +54,7 @@ EasyCacheManager.setObject(key, object[,options]).then(function(resp){
 
 ## Prefix
 
-You can define a global prefix and the librarie will add it to all the object keys.
+You can define a global prefix and the library will add it to all the object keys.
 
 **Example**
 ```javascript
