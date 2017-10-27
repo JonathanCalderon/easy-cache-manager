@@ -19,7 +19,7 @@ var EasyCacheManager = new ECM ('Local memory' [, timeout]);
 #### 2. Memcached
 ```javascript
 var ECM = require('easy-cache-manager');
-var EasyCacheManager = new ECM ('Memcached' [,<timeout>,<host>]);
+var EasyCacheManager = new ECM ('Memcached' [,<timeout>,<host>,<promiseObject>,<globalPrefix>]);
 ```
 **Note**: If you do not provide a *timeout* parameter, the object will be in memory as long as the memcached process is running. Also, if you do not provide a *host* parameter, the default value is *localhost*. It is require to have installed memcached for the host given.
 
@@ -50,4 +50,14 @@ EasyCacheManager.setObject(key, object[,options]).then(function(resp){
 {
     timeout: 1494277474 // Unix standar
 }
+```
+
+## Prefix
+
+You can define a global prefix and the librarie will add it to all the object keys.
+
+**Example**
+```javascript
+var ECM = require('easy-cache-manager');
+var EasyCacheManager = new ECM ('Memcached',1494277474,'localhost',require('bluebird'),'prefix_');
 ```
