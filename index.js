@@ -10,7 +10,7 @@ function easyCacheManager(options) {
         options = {};
     self.source = options.source || TYPE_LOCAL_MEMORY;
     self.timeout = options.timeout || -1;
-    self.endpointCache = options.host || 'localhost';
+    self.endpointCache = options.endpoint || 'localhost';
     self.promise = options.promise || require('bluebird');
     self.globalPrefix = options.prefix || "";
 
