@@ -1,6 +1,6 @@
 # easy-cache-manager
 This package allows you to easily manage your application cache, using one of two methods: local memory and MemCached.
-**Note:** Timeout functionality is not finished yet. Redis service will be soon provided
+**Note:** Redis service will be soon provided
 
 ## Instalation
 ```javascript
@@ -11,15 +11,15 @@ Currently there is two modes of cache that you can use: local memory and memcach
  
 #### 1. Local Memory
 ```javascript
-var ECM = require('easy-cache-manager');
-var EasyCacheManager = new ECM ('Local memory' [, timeout]);
+const ECM = require('easy-cache-manager');
+const EasyCacheManager = new ECM ('Local memory' [, timeout]);
 ```
 **Note**: If you do not provide a timeout parameter, the object will be in memory as long as the process is running.
 
 #### 2. Memcached
 ```javascript
-var ECM = require('easy-cache-manager');
-var EasyCacheManager = new ECM ('Memcached' [,<timeout>,<host>,<promiseObject>,<globalPrefix>]);
+const ECM = require('easy-cache-manager');
+const EasyCacheManager = new ECM ('Memcached' [,<timeout>,<host>,<promiseObject>,<globalPrefix>]);
 ```
 **Note**: If you do not provide a *timeout* parameter, the object will be in memory as long as the memcached process is running. Also, if you do not provide a *host* parameter, the default value is *localhost*. It is require to have installed memcached for the host given.
 
@@ -58,6 +58,6 @@ You can define a global prefix and the library will add it to all the object key
 
 **Example**
 ```javascript
-var ECM = require('easy-cache-manager');
-var EasyCacheManager = new ECM ('Memcached',1494277474,'localhost',require('bluebird'),'prefix_');
+const ECM = require('easy-cache-manager');
+const EasyCacheManager = new ECM ('Memcached',1494277474,'localhost',require('bluebird'),'prefix_');
 ```

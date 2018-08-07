@@ -1,5 +1,3 @@
-/* jslint es6 */
-
 'use strict';
 
 function localMemory(timeoutParam, promiseParam) {
@@ -12,18 +10,24 @@ function localMemory(timeoutParam, promiseParam) {
     self.getObject = (key) => {
         return new Promise(
             (resolve, reject) => {
-                if (self.objects[key] && self.objects[key].object)
+                const obj = self.objects[key];
+                if (!obj) resolve(null);
+                if (obj.timeout < 0 || (new Date()).getTime() - obj.timeCreated <= obj.timeout)
                     resolve(self.objects[key].object);
-                else resolve(null);
+                else {
+                    self.objects[key] = null;
+                    resolve(null);
+                }
             }
         );
     }
 
-    self.setObject = (key, objectCache, options) => {
-        let timeoutAct = (options && options.timeout) || self.timeout;
+    self.setObject = (key, object, options) => {
+        let timeout = (options && options.timeout) || self.timeout;
         self.objects[key] = {
-            object: objectCache,
-            timeoutAct: timeoutAct
+            object,
+            timeout,
+            timeCreated: (new Date()).getTime()
         }
         return new Promise((resolve, reject) => {
             resolve('ok');
